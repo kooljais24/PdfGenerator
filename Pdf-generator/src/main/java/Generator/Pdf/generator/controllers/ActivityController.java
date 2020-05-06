@@ -21,4 +21,5 @@ public class ActivityController {
     public void activateUser(@RequestBody UserActivityRequestModel userActivityRequestModel){
         activateUserService.activateUser(userActivityRequestModel);
     }
+
 }
