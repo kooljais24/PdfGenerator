@@ -66,7 +66,8 @@ public class PdfGenerator {
         addEmptyLine(preface, 1);
 
         for (int index =0 ;index< questionInfoList.size();index++){
-            preface.add(new Paragraph("Question " + index+1 + "): " +
+            int value = index+1;
+            preface.add(new Paragraph("Question " + value + "): " +
                                       questionInfoList.get(index).getQuestionStatement() , smallFont));
             addEmptyLine(preface, 1);
         }
