@@ -1,13 +1,8 @@
 package Generator.Pdf.generator.models.entity;
 
-import Generator.Pdf.generator.models.QuestionInfo;
-import Generator.Pdf.generator.models.UserActivityRequestModel;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -16,16 +11,23 @@ import java.sql.Timestamp;
 public class UserActivityEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Integer userId;
 
+    @Column(name = "start_time")
     private Timestamp startTime;
 
+    @Column(name = "end_time")
     private Timestamp endTime;
 
+    @Column(name = "statement")
     private String statement;
 
+    @Column(name = "question_tag")
     private String questionTag;
 
+    @Column(name = "question_subject")
     private String questionSubject;
 
 

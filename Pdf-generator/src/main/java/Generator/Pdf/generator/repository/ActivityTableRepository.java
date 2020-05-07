@@ -11,5 +11,5 @@ import java.util.List;
 public interface ActivityTableRepository extends JpaRepository<UserActivityEntity, Integer> {
     UserActivityEntity findByUserId(Integer id);
 
-    List<UserActivityEntity> findAllByEndTimeIsLessThanEqual(Timestamp time);
+    List<UserActivityEntity> findAllByEndTimeBetween(Timestamp time1, Timestamp time2);
 }
