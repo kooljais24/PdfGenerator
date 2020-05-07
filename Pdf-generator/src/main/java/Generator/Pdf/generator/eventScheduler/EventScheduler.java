@@ -1,5 +1,6 @@
 package Generator.Pdf.generator.eventScheduler;
 
+import Generator.Pdf.generator.constants.Constants;
 import Generator.Pdf.generator.models.QuestionInfo;
 import Generator.Pdf.generator.models.entity.Question;
 import Generator.Pdf.generator.models.entity.UserActivityEntity;
@@ -29,7 +30,7 @@ public class EventScheduler {
     @Scheduled(cron = "0 * * ? * *")
     public void pdfGenerator() {
         Timestamp time1 = new Timestamp(System.currentTimeMillis());
-        Timestamp time2 = new Timestamp(System.currentTimeMillis() -  1*60 * 1000);
+        Timestamp time2 = new Timestamp(System.currentTimeMillis() - Constants.schedulerCallInterval);
         List<UserActivityEntity> userActivityEntityList = activityTableRepository.findAllByEndTimeBetween(time2,time1);
         if(userActivityEntityList.size()>0) {
             pdfAsyncGenerator(userActivityEntityList);

@@ -1,5 +1,6 @@
 package Generator.Pdf.generator.services;
 
+import Generator.Pdf.generator.constants.Constants;
 import Generator.Pdf.generator.models.UserActivityRequestModel;
 import Generator.Pdf.generator.models.entity.UserActivityEntity;
 import Generator.Pdf.generator.repository.ActivityTableRepository;
@@ -20,7 +21,8 @@ public class ActivateUserService {
         if(userActivityEntity==null) {
             UserActivityEntity entity = new UserActivityEntity();
             entity.setStartTime(new Timestamp(System.currentTimeMillis()));
-            entity.setEndTime(new Timestamp(System.currentTimeMillis() + 2 * 60 * 1000));
+            //the endtime has been set as per requirement of the interval of inactivity we need to check
+            entity.setEndTime(new Timestamp(System.currentTimeMillis() + Constants.inactivityInterval));
             entity.setQuestionTag(userActivityRequestModel.getQuestionTag());
             entity.setQuestionSubject(userActivityRequestModel.getQuestionSubject());
             entity.setStatement(userActivityRequestModel.getQuestionStatement());
@@ -29,7 +31,8 @@ public class ActivateUserService {
         }
         else{
             userActivityEntity.setStartTime(new Timestamp(System.currentTimeMillis()));
-            userActivityEntity.setEndTime(new Timestamp(System.currentTimeMillis() + 2 * 60 * 1000));
+            //the endtime has been set as per requirement of the interval of inactivity we need to check
+            userActivityEntity.setEndTime(new Timestamp(System.currentTimeMillis() + Constants.inactivityInterval));
             userActivityEntity.setQuestionTag(userActivityRequestModel.getQuestionTag());
             userActivityEntity.setQuestionSubject(userActivityRequestModel.getQuestionSubject());
             userActivityEntity.setStatement(userActivityRequestModel.getQuestionStatement());
