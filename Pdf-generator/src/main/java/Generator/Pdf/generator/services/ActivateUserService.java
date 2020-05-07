@@ -19,18 +19,22 @@ public class ActivateUserService {
                 activityTableRepository.findByUserId(userActivityRequestModel.getUserId());
         if(userActivityEntity==null) {
             UserActivityEntity entity = new UserActivityEntity();
-            entity.setUserId(userActivityRequestModel.getUserId());
             entity.setStartTime(new Timestamp(System.currentTimeMillis()));
-            entity.setEndTime(new Timestamp(System.currentTimeMillis() + 5 * 60 * 1000));
-            entity.setQuestionTag(userActivityRequestModel.getQuestionInfo().getQuestionTag());
-            entity.setQuestionSubject(userActivityRequestModel.getQuestionInfo().getQuestionSubject());
-            entity.setStatement(userActivityRequestModel.getQuestionInfo().getQuestionStatement());
+            entity.setEndTime(new Timestamp(System.currentTimeMillis() + 2 * 60 * 1000));
+            entity.setQuestionTag(userActivityRequestModel.getQuestionTag());
+            entity.setQuestionSubject(userActivityRequestModel.getQuestionSubject());
+            entity.setStatement(userActivityRequestModel.getQuestionStatement());
             activityTableRepository.save(entity);
+            System.out.println("New Activity happened with entity: "+entity);
         }
         else{
             userActivityEntity.setStartTime(new Timestamp(System.currentTimeMillis()));
-            userActivityEntity.setEndTime(new Timestamp(System.currentTimeMillis() + 5 * 60 * 1000));
+            userActivityEntity.setEndTime(new Timestamp(System.currentTimeMillis() + 2 * 60 * 1000));
+            userActivityEntity.setQuestionTag(userActivityRequestModel.getQuestionTag());
+            userActivityEntity.setQuestionSubject(userActivityRequestModel.getQuestionSubject());
+            userActivityEntity.setStatement(userActivityRequestModel.getQuestionStatement());
             activityTableRepository.save(userActivityEntity);
+            System.out.println("Active user Activity happened with entity: "+userActivityEntity);
         }
     }
 }
